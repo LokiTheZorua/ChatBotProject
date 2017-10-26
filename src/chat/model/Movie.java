@@ -46,7 +46,7 @@ public class Movie
 
 	public int getLength()
 	{
-		return -99999999;
+		return length; //-99999999;
 	}
 
 	public LocalDate getReleaseDate()

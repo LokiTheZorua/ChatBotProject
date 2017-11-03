@@ -2,7 +2,7 @@ package chat.controller;
 
 
 
-public class ChatbotController
+public class ChatController
 {
 
 }

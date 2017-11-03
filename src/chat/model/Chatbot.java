@@ -64,14 +64,43 @@ public class Chatbot
 	
 	private void buildQuestions()
 	{
-		
+		questions[0] = "What's your favorite flavor of dirt?";
+		questions[1] = "On a scale of one to ten what is your favorite color in the alphabet?";
+		questions[2] = "What is your favorite animal to pet?";
+		questions[3] = "What is the most entertaining animal to watch?";
+		questions[4] = "When is your favorite time of year?";
+		questions[5] = "Is Christmas the most wonderful time of the year? Why?";
+		questions[6] = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+		questions[7] = "If Sally is selling sea shells by the sea shore, how much would each sold sea shell sell for?";
+		questions[8] = "What do I have in my pocket?";
+		questions[9] = "How do you get to Narnia?";
 	}
 	
 	public String processConversation(String input)
 	{
-		return null;
+		String chatbotResponse = "";
+		chatbotResponse += "You said:" + "\n" + input + "\n";
+		
+		chatbotResponse += buildChatbotResponse();
+		
+		return chatbotResponse;
 	}
 	
+	private String buildChatbotResponse()
+	{
+		String response = "I";
+		int random = (int) (Math.random() * verbs.length);
+		
+		response += verbs[random];
+		
+		random = (int) (Math.random() * topics.length);
+		response += " " +topics[random] + ".\n";
+		
+		random = (int) (Math.random() * questions.length);
+		response += questions[random];
+		
+		return response;
+	}
 	public boolean lengthChecker(String input)		//.length() > ! = null (first)
 	{
 		boolean validLength = false;

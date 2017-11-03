@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import chat.controller.ChatbotController;
+import chat.controller.ChatController;
 import chat.view.ChatPanel;
 
 public class PanelTest
@@ -23,7 +23,7 @@ public class PanelTest
 	@Before
 	public void setUp() throws Exception
 	{
-		testedPanel = new ChatPanel(new ChatbotController());
+		testedPanel = new ChatPanel(new ChatController());
 	}
 
 	@After

@@ -14,13 +14,13 @@ public class Movie
 	
 	public Movie(String title)
 	{
-		this.title = "";
-		this.genre = null;
-		this.ratingMPAA = null;
-		this.review = null;
-		this.length = -99;
-		this.releaseDate = null;
-		this.starScore = Double.NaN;
+		this.title = "title";
+		this.genre = "";
+		this.ratingMPAA = "";
+		this.review = "";
+		this.length = 0;
+		this.releaseDate = LocalDate.of(2017, 11, 7);
+		this.starScore = 0.00;
 	}
 
 	public String getTitle()
@@ -36,7 +36,7 @@ public class Movie
 
 	public String getRatingMPAA()
 	{
-		return null;
+		return ratingMPAA;
 	}
 
 	public String getReview()

@@ -20,7 +20,7 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = null;
+		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
@@ -141,10 +141,12 @@ public class Chatbot
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		if (shoppingList.contains("slug bait"))
+		if(shoppingList.contains(shoppingItem))
 		{
-			return false;
+			return true;
 		}
+		else
+			return false;
 	}
 	
 	public boolean movieTitleChecker(String title)

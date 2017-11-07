@@ -101,6 +101,11 @@ public class Chatbot
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
 		
+		if (random % 2 == 0)
+		{
+			random = (int) (Math.random() * movieList.size());
+			response += "\n" + movieList.get(random).getTitle() + "Is a great movie!";
+		}
 		return response;
 	}
 	public boolean lengthChecker(String input)		//.length() > ! = null (first)
@@ -131,7 +136,23 @@ public class Chatbot
 	
 	public boolean contentChecker(String contentCheck)
 	{
-		return false;
+		
+		if(username.contains("@@"))
+		{
+			return false;
+		}
+		else if(!username.contains("@"))
+		{
+			return false;
+		}
+		else if(username.isEmpty())
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	public boolean cuteAnimalMemeChecker(String input)

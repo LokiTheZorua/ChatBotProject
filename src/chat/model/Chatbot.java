@@ -78,6 +78,11 @@ public class Chatbot
 		questions[9] = "How do you get to Narnia?";
 	}
 	
+	/**
+	 * This will take what the person said and the uses it in a conversation, generating a random reply
+	 * @param input  The person would say something to it.
+	 * @return It will return a popup with an opinion about what they said and another question
+	 */
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
@@ -88,6 +93,10 @@ public class Chatbot
 		return chatbotResponse;
 	}
 	
+	/**
+	 *  This will generate a random opinion about what the person said last.
+	 * @return it returns the random opinion
+	 */
 	private String buildChatbotResponse()
 	{
 		String response = "I";

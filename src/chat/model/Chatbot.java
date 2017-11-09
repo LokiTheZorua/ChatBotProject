@@ -94,8 +94,8 @@ public class Chatbot
 	}
 	
 	/**
-	 *  This will generate a random opinion about what the person said last.
-	 * @return it returns the random opinion
+	 *  This will generate a random opinion about what the person said
+	 * @return returns the random opinion
 	 */
 	private String buildChatbotResponse()
 	{

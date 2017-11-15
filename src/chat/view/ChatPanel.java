@@ -5,19 +5,19 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
-import chat.controller.ChatController;
+import chat.controller.ChatbotController;
 import java.awt.Color;
 
 
 public class ChatPanel extends JPanel
 {
-	private ChatController appController;
+	private ChatbotController appController;
 	private JButton chatButton;
 	private JTextField inputField;
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
 	
-	public ChatPanel(ChatController appController)
+	public ChatPanel(ChatbotController appController)
 	{
 		super();
 		this.appController= appController;
@@ -43,6 +43,8 @@ public class ChatPanel extends JPanel
 		this.add(chatButton);
 		this.add(inputField);
 		this.add(chatArea);
+		chatArea.setEnabled(false);
+		chatArea.setEnabled(false);
 		
 	}
 	

@@ -12,13 +12,13 @@ public class ChatFrame extends JFrame
 	{
 		super();
 		this.appController = appController;
-//		appPane = new ChatPanel(appController);
+		appPane = new ChatPanel(appController);
 		setupFrame();
 	}
 	
 	private void setupFrame()
 	{
-//		this.setContentPane(appPane);
+		this.setContentPane(appPane);
 		this.setTitle("Chatting with the Chatbot");
 		this.setResizable(false);
 		this.setSize(600, 600);

@@ -7,7 +7,10 @@ public class ChatFrame extends JFrame
 {
 	private ChatbotController appController;
 	private ChatPanel appPanel;
-	
+/**
+ * 	runs the frame for the app
+ * @param appController
+ */
 	public ChatFrame(ChatbotController appController)
 	{
 		super();
@@ -15,7 +18,9 @@ public class ChatFrame extends JFrame
 		appPanel = new ChatPanel(appController);
 		setupFrame();
 	}
-	
+	/**
+	 * Constructor for the frame
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(appPanel);

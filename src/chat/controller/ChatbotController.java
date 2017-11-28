@@ -43,6 +43,23 @@ public class ChatbotController
 		return chatbotSays;
 	}
 	
+	public String useCheckers(String text)
+	{
+		String response = "";
+		
+		if(chatbot.contentChecker(text))
+		{
+			response += "This text matches the special Content/n";
+		}
+		if(chatbot.cuteAnimalMemeChecker(text))
+		{
+			response += "";
+		}
+		// need to add more checkers
+		
+		return response;
+	}
+	
 	public String interactWithChatbot(String input)
 	{
 		String chatbotSays = "";

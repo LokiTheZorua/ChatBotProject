@@ -160,7 +160,31 @@ public class Chatbot
 	 */
 	public boolean htmlTagChecker(String input)
 	{
-		return false;
+		input.toLowerCase();
+		if (!input.contains("<") && !input.contains(">"))
+		{
+			return false;
+		}
+		else if(input.contains("<>"))
+		{
+			return false;
+		}
+		else if(input.contains("< >"))
+		{
+			return false;
+		}
+		else
+		{
+		if (input.contains("</"))
+			{
+			return true;
+			}
+		else
+			{
+			return false;
+			}
+		}
+		
 	}
 
 	public boolean userNameChecker(String input)

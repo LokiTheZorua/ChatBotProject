@@ -161,6 +161,13 @@ public class Chatbot
 	public boolean htmlTagChecker(String input)
 	{
 		input.toLowerCase();
+		
+		int firstOpen = input.indexOf("<");
+		int firstClose = input.indexOf(">", firstOpen);
+		int secondOpen = -9;
+		int secondClose = -9;
+		String tagText = "";
+		
 		if (!input.contains("<") && !input.contains(">"))
 		{
 			return false;
@@ -179,6 +186,10 @@ public class Chatbot
 			{
 			return true;
 			}
+		else if (input.contains("<P>") || input.contains("BR"))
+		{
+			return true;
+		}
 		else
 			{
 			return false;

@@ -31,11 +31,11 @@ public class Chatbot
 		this.currentTime = null;
 		this.topics = new String[4];
 		this.verbs = new String[4];
-		this.followUps = null;
+		this.followUps = new String[5];
 
 		buildVerbs();
 		buildShoppingList();
-		// buildfollowUps();
+		buildFollowUps();
 		buildQuestions();
 		buildShoppingList();
 	}
@@ -46,6 +46,15 @@ public class Chatbot
 		verbs[1] = " dislike";
 		verbs[2] = " am ambivalent about";
 		verbs[3] = " am thinking about";
+	}
+	
+	private void buildFollowUps()
+	{
+		followUps[0] = "Why do you think that way about that?";
+		followUps[1] = "How does that make you feel?";
+		followUps[2] = "What are some other feelings you have about that?";
+		followUps[3] = "What does that feel like?";
+		followUps[4] = "Can you say that differently?";
 	}
 
 	public void buildMovieList()
@@ -86,13 +95,16 @@ public class Chatbot
 	 *            The person would say something to it.
 	 * @return It will return a popup with an opinion about what they said and another question
 	 */
+	
+	
 	public String processConversation(String input)
 	{
+		Boolean chatTrue = true;
 		String chatbotResponse = "";
 		chatbotResponse += "You said:" + "\n" + input + "\n";
 
 		chatbotResponse += buildChatbotResponse();
-
+		
 		return chatbotResponse;
 	}
 
@@ -221,7 +233,7 @@ public class Chatbot
 
 	public boolean contentChecker(String contentCheck)
 	{
-		return false;
+		return true;
 	}
 
 	public boolean cuteAnimalMemeChecker(String input)

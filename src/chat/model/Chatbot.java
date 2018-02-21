@@ -23,7 +23,7 @@ public class Chatbot
 		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = null;
-		this.currentTime = null;
+		this.currentTime = LocalTime.now();
 		this.questions = new String[10];
 		this.username = username;
 		this.content = null;
@@ -32,6 +32,8 @@ public class Chatbot
 		this.topics = new String[4];
 		this.verbs = new String[4];
 		this.followUps = new String[5];
+		this.followUps = new String[4];
+
 
 		buildVerbs();
 		buildShoppingList();
@@ -39,7 +41,9 @@ public class Chatbot
 		buildQuestions();
 		buildShoppingList();
 	}
-
+/**
+ * makes all the verbs used in what the chatbot says
+ */
 	private void buildVerbs()
 	{
 		verbs[0] = " like";
@@ -47,6 +51,7 @@ public class Chatbot
 		verbs[2] = " am ambivalent about";
 		verbs[3] = " am thinking about";
 	}
+
 	
 	private void buildFollowUps()
 	{
@@ -56,6 +61,11 @@ public class Chatbot
 		followUps[3] = "What does that feel like?";
 		followUps[4] = "Can you say that differently?";
 	}
+
+/**
+ * This is all the builders for the special responses
+ */
+
 
 	public void buildMovieList()
 	{
@@ -76,7 +86,7 @@ public class Chatbot
 
 	private void buildQuestions()
 	{
-		questions[0] = "What's your favorite flavor of dirt?";
+		questions[0] = "What's your name?";
 		questions[1] = "On a scale of one to ten what is your favorite color in the alphabet?";
 		questions[2] = "What is your favorite animal to pet?";
 		questions[3] = "What is the most entertaining animal to watch?";
@@ -101,6 +111,8 @@ public class Chatbot
 	{
 		Boolean chatTrue = true;
 		String chatbotResponse = "";
+		currentTime = LocalTime.now();
+		chatbotResponse += currentTime.getHour() + ":" + currentTime.getMinute() + " ";
 		chatbotResponse += "You said:" + "\n" + input + "\n";
 
 		chatbotResponse += buildChatbotResponse();
@@ -126,11 +138,11 @@ public class Chatbot
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
 
-		if (random % 2 == 0)
-		{
-			random = (int) (Math.random() * movieList.size());
-			response += "\n" + movieList.get(random).getTitle() + "Is a great movie!";
-		}
+//		if (random % 2 == 0)
+//		{
+//			random = (int) (Math.random() * movieList.size());
+//			response += "\n" + movieList.get(random).getTitle() + "Is a great movie!";
+//		}
 		
 		int followup = (int) (Math.random() * 5);
 		
@@ -145,14 +157,19 @@ public class Chatbot
 			response += followUps[2] + "\n";
 			break;
 		default:
-			response += followUps[4] + "\n";
+			response += followUps[3] + "\n";
 			response += followUps[3] + "\n";
 			break;
 		}
 		
 		return response;
 	}
-
+/**
+ * 
+ *  Checks the length of the Human's string and will make sure it is long enough
+ * @param input
+ * @return validLength
+ */
 	public boolean lengthChecker(String input) // .length() > ! = null (first)
 	{
 		boolean validLength = false;
@@ -167,59 +184,102 @@ public class Chatbot
 		return validLength;
 	}
 
-	/*
-	 * if (input != null && input.length() >2)
-	 */
+	//
+	//if (input != null && input.length() >2)
+	 //
+	
+/**
+ * This will check if they use a valid HTML if they even put in HTML
+ * @param input
+ * @return true or false
+ */
 	public boolean htmlTagChecker(String input)
 	{
-		input.toLowerCase();
+		String html = input.toLowerCase();
 		
-		int firstOpen = input.indexOf("<");
-		int firstClose = input.indexOf(">", firstOpen);
+		int firstOpen = html.indexOf("<");
+		int firstClose = html.indexOf(">");
 		int secondOpen = -9;
 		int secondClose = -9;
 		String tagText = "";
 		
-		if (!input.contains("<") && !input.contains(">"))
+		for (int index = 0; index < input.length(); index++)
 		{
-			return false;
-		}
-		else if(input.contains("<>"))
-		{
-			return false;
-		}
-		else if(input.contains("< >"))
-		{
-			return false;
-		}
-		else
-		{
-		if (input.contains("</"))
+			if( html.charAt(index) == '<')
 			{
-			return true;
+				if (firstOpen >= index);
+				else
+				{
+					secondOpen = index;
+				}
 			}
-		else if (input.contains("<P>") || input.contains("BR"))
+			if( input.charAt(index) == '>')
+			{
+				if (firstClose >= index);
+				else
+				{
+					secondClose = index;
+				}
+			}
+		}
+		
+		if (!html.contains("<") && !input.contains(">"))
 		{
-			return true;
+			return false;
+		}
+		else if(html.contains("<>"))
+		{
+			return false;
+		}
+		else if(html.contains("< >"))
+		{
+			return false;
+		}
+		else if (html.contains("a href") && !html.contains("="))
+		{
+			return false;
 		}
 		else
+		{
+			if (html.contains("a href="))
 			{
-			return false;
+				return true;
+			}
+			else if (html.contains("</") )
+			{
+				return true;
+			}
+			else if (html.contains("<p>") || html.contains("<br>"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 		
 	}
-
+/**
+ * Checks if the persons username is acceptable.
+ * @param input
+ * @return
+ */
 	public boolean userNameChecker(String input)
 	{
-		
-		if (username.contains("@"))
+	
+	
+		if (input != null && input.contains("@"))
 		{
-			if (username.contains("@@"))
+			if (input.contains("@@"))
 			{
 				return false;
 			}
-			else if (username.isEmpty())
+			else if (input.isEmpty())
+			{
+				return false;
+			}
+			else if (input.contains(".com") || (username.contains(".org")))
 			{
 				return false;
 			}
@@ -228,7 +288,11 @@ public class Chatbot
 				return true;
 			}
 		}
-		return false;
+		else
+		{
+			return false;
+		}
+		
 	}
 
 	public boolean contentChecker(String contentCheck)
@@ -292,7 +356,7 @@ public class Chatbot
 
 	public String[] getQuestions()
 	{
-		return null;
+		return questions;
 	}
 
 	public String[] getVerbs()
@@ -317,6 +381,7 @@ public class Chatbot
 
 	public String getContent()
 	{
+	
 		return content;
 	}
 

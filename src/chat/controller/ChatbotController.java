@@ -3,6 +3,7 @@ package chat.controller;
 import chat.model.Chatbot;
 import chat.view.PopupDisplay;
 import chat.view.ChatFrame;
+import chat.model.CTECTwitter;
 
 /**
  * Manages the Chatbot application including the model and frame of the view package
@@ -15,10 +16,12 @@ public class ChatbotController
 	private Chatbot chatbot;
 	private PopupDisplay display;
 	private ChatFrame appFrame;
+	private CTECTwitter myTwitter;
 	
 	public ChatbotController()
 	{
 		chatbot = new Chatbot("Alec Jones");
+		myTwitter = new CTECTwitter(this);
 		display = new PopupDisplay();
 		appFrame = new ChatFrame(this);
 	}
@@ -76,5 +79,10 @@ public class ChatbotController
 	{
 		display.displayText("Goodbye");
 		System.exit(0);
+	}
+	
+	public void handleErrors(Exception error)
+	{
+		display.displayText(error.getMessage());
 	}
 }

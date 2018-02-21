@@ -18,11 +18,7 @@ public class ChatFrame extends JFrame
 		appPanel = new ChatPanel(appController);
 		setupFrame();
 	}
-	
-	public void getBaseController()
-	{
-		baseController = appController;
-	}
+
 	/**
 	 * Constructor for the frame
 	 */

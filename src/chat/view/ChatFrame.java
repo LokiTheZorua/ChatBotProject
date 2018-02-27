@@ -18,11 +18,7 @@ public class ChatFrame extends JFrame
 		appPanel = new ChatPanel(appController);
 		setupFrame();
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> addingTwitter
 	/**
 	 * Constructor for the frame
 	 */

@@ -55,10 +55,9 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.SOUTH, loadButton, 0, SpringLayout.SOUTH, chatButton);
 		appLayout.putConstraint(SpringLayout.EAST, loadButton, -17, SpringLayout.WEST, chatButton);
 		saveButton = new JButton("save", new ImageIcon(getClass().getResource("/chat/view/images/save.png")));
-<<<<<<< HEAD
+
 		tweetButton = new JButton("tweet", new ImageIcon(getClass().getResource("/chat/view/images/tweet.png")));
 		searchButton = new JButton("search", new ImageIcon(getClass().getResource("/chat/view/images/search.png")));
-=======
 		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 0, SpringLayout.NORTH, loadButton);
 		appLayout.putConstraint(SpringLayout.EAST, saveButton, -6, SpringLayout.WEST, loadButton);
 		tweetButton = new JButton("tweet", new ImageIcon(getClass().getResource("/chat/view/images/tweet.png")));
@@ -67,7 +66,7 @@ public class ChatPanel extends JPanel
 		searchButton = new JButton("search", new ImageIcon(getClass().getResource("/chat/view/images/search.png")));
 		appLayout.putConstraint(SpringLayout.NORTH, searchButton, 0, SpringLayout.NORTH, tweetButton);
 		appLayout.putConstraint(SpringLayout.WEST, searchButton, 0, SpringLayout.WEST, loadButton);
->>>>>>> addingTwitter
+
 		
 		
 		

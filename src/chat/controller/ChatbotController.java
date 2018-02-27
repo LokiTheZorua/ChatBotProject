@@ -82,7 +82,10 @@ public class ChatbotController
 		display.displayText("Goodbye");
 		System.exit(0);
 	}
-	
+	public void tweet(String text)
+	{
+		myTwitter.sendTweet(text);
+	}
 	public void handleErrors(Exception error)
 	{
 		display.displayText(error.getMessage());

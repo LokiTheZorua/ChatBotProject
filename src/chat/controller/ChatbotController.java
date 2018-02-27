@@ -35,6 +35,8 @@ public class ChatbotController
 //			response = popupChat(response);
 //			response =  display.collectResponse(response);
 //		}
+		String results = IOController.loadFromFile(this, "commonWords.txt");
+		IOController.SaveToFile(this, results, "");
 	}
 	
 	private String popupChat(String chat)

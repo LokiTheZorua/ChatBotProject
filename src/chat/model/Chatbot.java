@@ -59,7 +59,6 @@ public class Chatbot
 		followUps[1] = "How does that make you feel?";
 		followUps[2] = "What are some other feelings you have about that?";
 		followUps[3] = "What does that feel like?";
-		followUps[4] = "Can you say that differently?";
 	}
 
 /**

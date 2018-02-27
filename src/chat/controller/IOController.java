@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class IOController
 {
-	public static void saveToFile(ChatbotController app, String textToSave, String path)
+	public static void SaveToFile(ChatbotController app, String textToSave, String path)
 	{
 		String savePath;
 		Calendar time = Calendar.getInstance();

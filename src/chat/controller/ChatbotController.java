@@ -90,4 +90,9 @@ public class ChatbotController
 	{
 		display.displayText(error.getMessage());
 	}
+	
+	public String search(String text)
+	{
+		return myTwitter.getMostCommonWord(text);
+	}
 }

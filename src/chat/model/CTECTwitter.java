@@ -8,6 +8,7 @@ import twitter4j.*;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.text.DecimalFormat;
 
 public class CTECTwitter
@@ -18,11 +19,16 @@ public class CTECTwitter
 	private List<Status> searchedTweets;
 	private List<String> tweetedWords;
 	private long totalWordCount;
+	private HashMap<String, Integer> wordsAndCount;
 	
 	public CTECTwitter(ChatbotController appController)
 	{
 		this.appController = appController;
+		this.searchedTweets = new ArrayList<Status>();
+		this.tweetedWords = new ArrayList<String>();
 		this.chatbotTwitter = TwitterFactory.getSingleton();
+		this.wordsAndCount = new HashMap<String, Integer>();
+		this.totalWordCount = 0;
 	}
 	
 	public void sendTweet(String textToTweet)
@@ -94,6 +100,7 @@ public class CTECTwitter
 		for(Status currentStatus : searchedTweets)
 		{
 			String tweetText = currentStatus.getText();
+			tweetText = tweetText.replaceAll("\n", " ");
 			String [] tweetWords = tweetText.split("");
 			for(int index = 0; index <tweetWords.length; index++)
 			{
@@ -137,5 +144,46 @@ public class CTECTwitter
 		wordScanner.close();
 		
 		return boringWords;
+	}
+	
+	private void trimTheBoringWords(String [] boringWords)
+	{
+		for (int index = tweetedWords.size() -1; index >= 0; index--)
+		{
+			for (int removeIndex = 0; removeIndex < boringWords.length; removeIndex++)
+			{
+				if (tweetedWords.get(index).equals(boringWords[removeIndex]))
+				{
+					tweetedWords.remove(index);
+					removeIndex = boringWords.length;
+				}
+			}
+		}
+	}
+	
+	private void removeBlanks()
+	{
+		for(int index = tweetedWords.size() - 1; index >= 0; index--)
+		{
+			if (tweetedWords.get(index).trim().length() == 0)
+			{
+				tweetedWords.remove(index);
+			}
+		}
+	}
+	
+	private void generateWordCount()
+	{
+		for (String word : tweetedWords)
+		{
+			if(!wordsAndCount.containsKey(word.toLowerCase()))
+			{
+				wordsAndCount.put(word.toLowerCase(), 1);
+			}
+			else
+			{
+				wordsAndCount.replace(word.toLowerCase(), wordsAndCount.get(word.toLowerCase()) + 1);
+			}
+		}
 	}
 }
